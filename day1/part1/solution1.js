@@ -16,9 +16,22 @@ const input = fs.readFileSync('input1.txt', (err, data) => {
 
 const data = input.toString();
 
+
 // 2.separate into two lists
 const list1 = [];
 const list2 = [];
+
+const parseData = (data) => {
+  const lineItems = data.split('\n');
+  for (let i = 0; i < lineItems.length; i++) {
+    let items = lineItems[i].split('  ');
+    list1.push(parseInt(items[0]));
+    list2.push(parseInt(items[1]));
+  };
+};
+
+parseData(data);
+
 
   //error handling of mismatched sizes
   if (list1.length != list2.length) {
@@ -41,7 +54,6 @@ for (let i = 0; i < sortedList1.length; i++) {
 };
 
 // 4. find total distance
-
 const totalDistance = lengthList.reduce((acc, distance) => acc + distance, 0);
 
 console.log(totalDistance);
